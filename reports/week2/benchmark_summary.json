@@ -1,0 +1,123 @@
+{
+  "config": {
+    "persist_dir": "chroma_db",
+    "collection": "week2_chunks",
+    "model": "all-MiniLM-L6-v2",
+    "top_k": 5,
+    "repeats": 5,
+    "warmup_repeats": 1
+  },
+  "overall": {
+    "num_queries": 10,
+    "repeats_per_query": 5,
+    "total_measurements": 50,
+    "mean_total_ms": 48.21084934024839,
+    "p50_total_ms": 44.978076992265414,
+    "p95_total_ms": 54.923934550606646,
+    "mean_embed_ms": 12.365166500385385,
+    "mean_search_ms": 35.82623168011196,
+    "mean_hits": 5.0
+  },
+  "per_query": [
+    {
+      "query": "What is anarchism?",
+      "repeats": 5,
+      "mean_total_ms": 46.67154639901128,
+      "p50_total_ms": 44.69613199762534,
+      "p95_total_ms": 53.185319795738906,
+      "mean_embed_ms": 11.109564601792954,
+      "mean_search_ms": 35.542596798040904,
+      "mean_hits": 5.0
+    },
+    {
+      "query": "Who was Pierre-Joseph Proudhon?",
+      "repeats": 5,
+      "mean_total_ms": 46.43418040359393,
+      "p50_total_ms": 44.8041820054641,
+      "p95_total_ms": 51.0594554070849,
+      "mean_embed_ms": 10.732574001303874,
+      "mean_search_ms": 35.67948040436022,
+      "mean_hits": 5.0
+    },
+    {
+      "query": "What is the etymology of the word anarchy?",
+      "repeats": 5,
+      "mean_total_ms": 44.43078480253462,
+      "p50_total_ms": 44.31718500563875,
+      "p95_total_ms": 45.51671679946594,
+      "mean_embed_ms": 11.042831200757064,
+      "mean_search_ms": 33.36975300335325,
+      "mean_hits": 5.0
+    },
+    {
+      "query": "How did modern anarchism emerge from the Enlightenment?",
+      "repeats": 5,
+      "mean_total_ms": 44.819988997187465,
+      "p50_total_ms": 44.693607997032814,
+      "p95_total_ms": 45.34140379691962,
+      "mean_embed_ms": 10.759882401907817,
+      "mean_search_ms": 34.042328398209065,
+      "mean_hits": 5.0
+    },
+    {
+      "query": "What are revolutionary and evolutionary anarchist strategies?",
+      "repeats": 5,
+      "mean_total_ms": 65.78584740345832,
+      "p50_total_ms": 53.33832999167498,
+      "p95_total_ms": 115.95066880690864,
+      "mean_embed_ms": 19.483424600912258,
+      "mean_search_ms": 46.28221159800887,
+      "mean_hits": 5.0
+    },
+    {
+      "query": "What is libertarian socialism?",
+      "repeats": 5,
+      "mean_total_ms": 44.52536319731735,
+      "p50_total_ms": 44.18451800302137,
+      "p95_total_ms": 46.91488040261902,
+      "mean_embed_ms": 10.538684198400006,
+      "mean_search_ms": 33.9671493973583,
+      "mean_hits": 5.0
+    },
+    {
+      "query": "How did the Spanish Civil War affect the anarchist movement?",
+      "repeats": 5,
+      "mean_total_ms": 51.40274440054782,
+      "p50_total_ms": 45.86163400381338,
+      "p95_total_ms": 64.71933439897839,
+      "mean_embed_ms": 14.906134802731685,
+      "mean_search_ms": 36.476100198342465,
+      "mean_hits": 5.0
+    },
+    {
+      "query": "What is a stateless society?",
+      "repeats": 5,
+      "mean_total_ms": 45.19071700051427,
+      "p50_total_ms": 44.4490060035605,
+      "p95_total_ms": 48.82847300032154,
+      "mean_embed_ms": 10.332602000562474,
+      "mean_search_ms": 34.839134401408955,
+      "mean_hits": 5.0
+    },
+    {
+      "query": "Who were William Godwin and Max Stirner?",
+      "repeats": 5,
+      "mean_total_ms": 47.10598280071281,
+      "p50_total_ms": 46.03193300135899,
+      "p95_total_ms": 52.01055140350945,
+      "mean_embed_ms": 12.210923398379236,
+      "mean_search_ms": 34.87637620419264,
+      "mean_hits": 5.0
+    },
+    {
+      "query": "What is collectivist anarchism?",
+      "repeats": 5,
+      "mean_total_ms": 45.741337997606024,
+      "p50_total_ms": 45.29459300101735,
+      "p95_total_ms": 47.882752199075185,
+      "mean_embed_ms": 12.535043797106482,
+      "mean_search_ms": 33.187186397844926,
+      "mean_hits": 5.0
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "generated_at": "2026-10-08T21:10:40.727083+00:00",
+  "raw_path": "data/raw/wikipedia_raw.jsonl",
+  "source": "wikimedia/wikipedia",
+  "raw_document_count": 50000,
+  "clean_document_count": 49324,
+  "min_documents_required": 5000,
+  "min_chars": 120,
+  "max_chars": 8000,
+  "language_filter_enabled": true,
+  "unique_ids": true,
+  "null_text_count": 0,
+  "char_count_min": 122,
+  "char_count_max": 8000,
+  "word_count_mean": 551.1033776660449,
+  "outputs": {
+    "parquet": "data/processed/clean_corpus.parquet",
+    "jsonl": "data/processed/clean_corpus.jsonl"
+  },
+  "samples": [
+    {
+      "id": "wikimedia-wikipedia-0",
+      "char_count": 8000,
+      "word_count": 1164,
+      "source": "wikimedia/wikipedia",
+      "language": "en_heuristic",
+      "text_preview": "Anarchism is a political philosophy and movement that is skeptical of all justifications for authority and seeks to abolish the institutions it claims maintain unnecessary coercion and hierarchy, typi"
+    },
+    {
+      "id": "wikimedia-wikipedia-1",
+      "char_count": 8000,
+      "word_count": 1260,
+      "source": "wikimedia/wikipedia",
+      "language": "en_heuristic",
+      "text_preview": "Albedo (; ) is the fraction of sunlight that is diffusely reflected by a body. It is measured on a scale from 0 (corresponding to a black body that absorbs all incident radiation) to 1 (corresponding "
+    },
+    {
+      "id": "wikimedia-wikipedia-2",
+      "char_count": 8000,
+      "word_count": 1350,
+      "source": "wikimedia/wikipedia",
+      "language": "en_heuristic",
+      "text_preview": "A, or a, is the first letter and the first vowel of the Latin alphabet, used in the modern English alphabet, the alphabets of other western European languages and others worldwide. Its name in English"
+    }
+  ]
+}

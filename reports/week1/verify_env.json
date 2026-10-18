@@ -1,0 +1,92 @@
+{
+  "python": "3.10.22 (main, Oct  1 2026, 20:14:04) [GCC 14.3.0]",
+  "platform": "Linux-7.1.13+parrot7-amd64-x86_64-with-glibc2.41",
+  "imports": {
+    "pandas": {
+      "module": "pandas",
+      "package": "pandas",
+      "ok": true,
+      "version": "2.3.3",
+      "error": null
+    },
+    "sentence_transformers": {
+      "module": "sentence_transformers",
+      "package": "sentence-transformers",
+      "ok": true,
+      "version": "6.1.0",
+      "error": null,
+      "has_sentence_transformer": true
+    },
+    "chromadb": {
+      "module": "chromadb",
+      "package": "chromadb",
+      "ok": true,
+      "version": "1.5.9",
+      "error": null
+    },
+    "spacy": {
+      "module": "spacy",
+      "package": "spaCy",
+      "ok": true,
+      "version": "3.8.16",
+      "error": null
+    },
+    "torch": {
+      "module": "torch",
+      "package": "PyTorch",
+      "ok": true,
+      "version": "2.14.1+cu130",
+      "error": null
+    },
+    "bs4": {
+      "module": "bs4",
+      "package": "beautifulsoup4",
+      "ok": true,
+      "version": "4.15.0",
+      "error": null
+    },
+    "datasets": {
+      "module": "datasets",
+      "package": "datasets",
+      "ok": true,
+      "version": "5.1.0",
+      "error": null
+    },
+    "pyarrow": {
+      "module": "pyarrow",
+      "package": "pyarrow",
+      "ok": true,
+      "version": "25.0.1",
+      "error": null
+    },
+    "pytest": {
+      "module": "pytest",
+      "package": "pytest",
+      "ok": true,
+      "version": "9.1.1",
+      "error": null
+    }
+  },
+  "gpu": {
+    "checked": true,
+    "cuda_available": false,
+    "device_count": 0,
+    "devices": [],
+    "torch_cuda_version": "13.0",
+    "cudnn_version": null,
+    "error": null
+  },
+  "chroma": {
+    "ok": true,
+    "error": null
+  },
+  "spacy": {
+    "ok": true,
+    "version": "3.8.16",
+    "model_installed": true,
+    "model_runs": true,
+    "error": null
+  },
+  "passed": true,
+  "failures": []
+}
