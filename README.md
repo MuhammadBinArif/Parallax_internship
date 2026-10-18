@@ -628,25 +628,25 @@ if not path.exists():
 				|---|---|
 				| Status | ok |
 				| Files found | 1 |
-				| Documents processed | 49324 |
-				| Chunks created | 328148 |
+				| Documents processed | 1000 |
+				| Chunks created | 12825 |
 				| Embedding model | all-MiniLM-L6-v2 |
 				| Embedding dimension | 384 |
-				| Chunking seconds | 40.98 |
-				| Embedding seconds | 22364.49 |
-				| Upsert seconds | 2630.95 |
-				| Upserted | 328148 |
+				| Chunking seconds | 2.16 |
+				| Embedding seconds | 1278.6 |
+				| Upsert seconds | 104.92 |
+				| Upserted | 12825 |
 				| Skipped | 0 |
-				| Collection count after ingest | 328148 |
-				| Total ingest seconds | 25067.25 |
+				| Collection count after ingest | 12825 |
+				| Total ingest seconds | 1401.52 |
 				| Queries benchmarked | 10 |
 				| Repeats per query | 5 |
 				| Total measurements | 50 |
-				| Mean total latency ms | 48.21 |
-				| P50 total latency ms | 44.98 |
-				| P95 total latency ms | 54.92 |
-				| Mean embed latency ms | 12.37 |
-				| Mean search latency ms | 35.83 |
+				| Mean total latency ms | 21.15 |
+				| P50 total latency ms | 20.47 |
+				| P95 total latency ms | 25.87 |
+				| Mean embed latency ms | 15.72 |
+				| Mean search latency ms | 5.4 |
 				| Mean hits | 5.0 |
 				
 				### Design Decisions (Week 2)
@@ -661,6 +661,13 @@ if not path.exists():
 				
 				- Duplicate chunk IDs are prevented by including document identity in the chunk ID namespace. As a defensive safeguard, ChromaDB upsert batches deduplicate repeated IDs before insertion because ChromaDB rejects duplicate IDs within a single batch.
 				Empty/whitespace text → no chunks; unicode preserved; no‑separator text → hard split; duplicate IDs → upsert update; empty docs → single space; NaN/Inf embeddings → skipped + logged; dimension mismatch → clear error + `--reset`; empty collection query → no results; unsupported metadata → sanitized to primitives; large ingests → batched; non‑finite query vector → validation error.
+				
+				### Corpus Scope for Week 2
+				
+				Week 1 produced approximately 49,324 cleaned Wikipedia documents. For Week 2, embedding generation on CPU is computationally expensive, so the submitted vector database indexes a representative subset of the cleaned corpus using:
+				
+				```bash
+				python scripts/ingest_vectors.py --limit-docs 500 --reset
 				
 				### Known Limitations (Week 2)
 				

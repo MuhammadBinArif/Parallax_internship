@@ -48,16 +48,27 @@ def clean_text(text: Optional[str]) -> str:
 
 
 def _chunk_namespace(metadata: Optional[Dict[str, Any]]) -> str:
+    """
+    Build a namespace string from document metadata so identical text from
+    different documents does not produce identical chunk IDs.
+    """
     if not metadata:
         return ""
+
     for key in ("id", "doc_id", "document_id", "line_number", "index", "source"):
         value = metadata.get(key)
         if value is not None:
             return str(value)
+
     return ""
 
 
-def make_chunk_id(text: str, index: int, source: Optional[str] = None, namespace: str = "") -> str:
+def make_chunk_id(
+    text: str,
+    index: int,
+    source: Optional[str] = None,
+    namespace: str = "",
+) -> str:
     """
     Deterministic chunk ID based on source, namespace, index, and content.
     """
@@ -147,13 +158,15 @@ def chunk_text(
     if source:
         base_metadata["source"] = str(source)
 
+    namespace = _chunk_namespace(base_metadata)
+
     if not cleaned:
         return []
 
     if len(cleaned) <= chunk_size:
         return [
             Chunk(
-                id=make_chunk_id(cleaned, 0, source, _chunk_namespace(base_metadata)),
+                id=make_chunk_id(cleaned, 0, source, namespace),
                 text=cleaned,
                 metadata={**base_metadata, "chunk_index": 0},
             )
@@ -204,7 +217,7 @@ def chunk_text(
 
         chunks.append(
             Chunk(
-                id=make_chunk_id(chunk_str, idx, source, _chunk_namespace(base_metadata)),
+                id=make_chunk_id(chunk_str, idx, source, namespace),
                 text=chunk_str,
                 metadata={**base_metadata, "chunk_index": idx},
             )
