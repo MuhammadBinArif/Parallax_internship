@@ -884,11 +884,11 @@ Each log includes:
 | Insufficient-context refusals | 2 |
 | Unsupported refusals | 0 |
 | Errors | 0 |
-| Mean total latency | 640.16 ms |
-| Mean retrieval latency | 47.94 ms |
-| Mean generation latency | 590.87 ms |
-| Mean validation latency | 1.27 ms |
-| Mean total tokens | 1155.5 |
+| Mean total latency | 537.26 ms |
+| Mean retrieval latency | 55.67 ms |
+| Mean generation latency | 480.56 ms |
+| Mean validation latency | 0.92 ms |
+| Mean total tokens | 1168.67 |
 
 ### Known Limitations
 
@@ -915,4 +915,5 @@ Each log includes:
 - [x] Instructions to run code included
 
 <!-- WEEK3_SECTION_END -->
+
 

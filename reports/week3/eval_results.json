@@ -4,17 +4,17 @@
     "expected_category": "answered",
     "actual_category": "answered",
     "status": "ok",
-    "answer": "Anarchism is a political philosophy that rejects all forms of unjustified authority and seeks to abolish institutions that maintain coercion and hierarchy, such as the state and capitalism, advocating for stateless societies and voluntary free associations. It is historically a left‑wing movement, often described as the libertarian wing of socialism (libertarian socialism).",
+    "answer": "Anarchism is a political philosophy that rejects all forms of unjustified authority and seeks to abolish hierarchical institutions such as the state and capitalism, advocating for stateless societies and voluntary free associations. It is historically a left‑wing movement, often described as the libertarian wing of socialism, and emphasizes the possibility of a non‑coercive society based on voluntary cooperation.",
     "citations": [
       "fec396c131bd406fa377fb6d90f4bcc1",
       "717652f9e1a74f05d0db4c7b8206ff1a"
     ],
     "latency": {
-      "retrieval_ms": 23.94,
+      "retrieval_ms": 38.29,
       "prompt_build_ms": 0.01,
-      "generation_ms": 940.01,
-      "validation_ms": 5.99,
-      "total_ms": 970.0
+      "generation_ms": 746.21,
+      "validation_ms": 3.85,
+      "total_ms": 788.41
     },
     "tokens": {
       "prompt_tokens": 1275,
@@ -48,16 +48,16 @@
     "answer": "The retrieved documents do not contain enough information to answer this question confidently.",
     "citations": [],
     "latency": {
-      "retrieval_ms": 47.5,
-      "prompt_build_ms": 0.01,
-      "generation_ms": 1093.4,
+      "retrieval_ms": 67.13,
+      "prompt_build_ms": 0.02,
+      "generation_ms": 1182.04,
       "validation_ms": 0.02,
-      "total_ms": 1141.01
+      "total_ms": 1249.45
     },
     "tokens": {
       "prompt_tokens": 1718,
-      "completion_tokens": 535,
-      "total_tokens": 2253
+      "completion_tokens": 610,
+      "total_tokens": 2328
     },
     "debug": {
       "chunks_retrieved": 5,
@@ -88,11 +88,11 @@
       "9472ee9ec992c686f5069377a9e68ee3"
     ],
     "latency": {
-      "retrieval_ms": 49.49,
-      "prompt_build_ms": 0.01,
-      "generation_ms": 791.95,
-      "validation_ms": 1.62,
-      "total_ms": 843.13
+      "retrieval_ms": 80.16,
+      "prompt_build_ms": 0.02,
+      "generation_ms": 659.44,
+      "validation_ms": 1.61,
+      "total_ms": 741.4
     },
     "tokens": {
       "prompt_tokens": 1413,
@@ -126,11 +126,11 @@
     "answer": "I can only answer questions related to the indexed documents. This request appears to be outside that scope.",
     "citations": [],
     "latency": {
-      "retrieval_ms": 48.94,
-      "prompt_build_ms": 0.0,
+      "retrieval_ms": 40.78,
+      "prompt_build_ms": 0.01,
       "generation_ms": 0.0,
       "validation_ms": 0.0,
-      "total_ms": 48.97
+      "total_ms": 40.82
     },
     "tokens": {
       "prompt_tokens": 0,
@@ -162,11 +162,11 @@
     "answer": "I can only answer questions related to the indexed documents. This request appears to be outside that scope.",
     "citations": [],
     "latency": {
-      "retrieval_ms": 48.28,
-      "prompt_build_ms": 0.0,
+      "retrieval_ms": 57.56,
+      "prompt_build_ms": 0.01,
       "generation_ms": 0.0,
       "validation_ms": 0.0,
-      "total_ms": 48.32
+      "total_ms": 57.61
     },
     "tokens": {
       "prompt_tokens": 0,
@@ -197,16 +197,16 @@
     "answer": "The retrieved documents do not contain enough information to answer this question confidently.",
     "citations": [],
     "latency": {
-      "retrieval_ms": 69.51,
+      "retrieval_ms": 50.09,
       "prompt_build_ms": 0.01,
-      "generation_ms": 719.84,
-      "validation_ms": 0.02,
-      "total_ms": 789.51
+      "generation_ms": 295.66,
+      "validation_ms": 0.01,
+      "total_ms": 345.87
     },
     "tokens": {
       "prompt_tokens": 1228,
-      "completion_tokens": 84,
-      "total_tokens": 1312
+      "completion_tokens": 88,
+      "total_tokens": 1316
     },
     "debug": {
       "chunks_retrieved": 5,
