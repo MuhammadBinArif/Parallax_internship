@@ -34,8 +34,13 @@ class SentenceTransformerEmbedder:
         self.model_name = model_name
         self.batch_size = batch_size
         self._model = SentenceTransformer(model_name, device=device)
-        self.dimension = int(self._model.get_sentence_embedding_dimension())
-
+        try:
+            self.dimension = int(self._model.get_embedding_dimension())
+        except AttributeError:
+            try:
+                self.dimension = int(self._model.get_embedding_dimension())
+            except AttributeError:
+                self.dimension = int(self._model.get_sentence_embedding_dimension())
     def embed(
         self,
         texts: Sequence[str],
