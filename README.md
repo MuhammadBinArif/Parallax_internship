@@ -708,3 +708,210 @@ if not path.exists():
 				| torch (+CUDA build) | Backend for sentence-transformers | Week 1/2 |
 				| pytest | Unit testing | Week 1 |
 				| python-dotenv | Environment variable loading | Week 1 |
+
+<!-- WEEK3_SECTION_START -->
+
+## Week 3 — LLM Integration & Prompt Engineering
+
+### Objective
+
+Integrate an LLM API with the Week 2 retrieval system to generate grounded answers from retrieved chunks, while handling hallucinations, out-of-domain queries, API errors, and end-to-end latency logging.
+
+### LLM Provider
+
+- Provider: `groq`
+- Model ID: `openai/gpt-oss-20b`
+- API key: loaded securely from `.env` and not committed
+
+### What I Built
+
+The Week 3 system extends the Week 2 ChromaDB retriever with a hallucination-resistant RAG pipeline.
+
+Pipeline:
+
+1. User submits a query.
+2. Week 2 retriever retrieves top-k chunks from ChromaDB.
+3. Weak chunks are filtered using `RAG_MIN_CHUNK_SCORE`.
+4. Remaining chunks are packed into a bounded context.
+5. A strict system prompt instructs the LLM to answer only from context.
+6. Retrieved chunks are injected as XML-style context blocks with chunk IDs.
+7. The LLM returns structured JSON with `category`, `answer`, and `citations`.
+8. The system validates citation IDs against retrieved chunks.
+9. The system checks sentence-level support using lexical overlap and fuzzy matching.
+10. If unsupported, the system retries once with a stricter revision prompt.
+11. If still unsafe, it returns a refusal.
+12. Obvious off-topic requests are guarded and refused as `out_of_domain`.
+13. End-to-end latency and token usage are logged.
+
+### Architecture
+
+```text
+User Query
+   |
+   v
+Week 2 ChromaDB Retriever
+   |
+   v
+Chunk Filtering and Packing
+   |
+   v
+Prompt Builder
+   |
+   v
+Groq LLM API Client
+   |
+   v
+JSON Parser
+   |
+   v
+Citation and Support Validator
+   |
+   v
+Final Answer or Safe Refusal
+   |
+   v
+Latency Logger
+```
+
+### How To Run Locally
+
+```bash
+cd ~/internship-repo
+conda activate ParallaxLabsInternship
+
+python scripts/check_week3_llm_client.py
+python scripts/check_week3_retriever.py
+
+python scripts/run_week3_demo.py --query "What is anarchism?"
+python scripts/run_week3_demo.py --query "Write a poem about black holes."
+python scripts/run_week3_demo.py --query "What is the current leadership of the anarchist movement in 2026?"
+
+python scripts/benchmark_week3.py
+python -m pytest -v
+```
+
+### Example Outputs
+
+#### Grounded answer
+
+```json
+{
+  "status": "ok",
+  "category": "answered",
+  "answer": "Anarchism is a political philosophy that rejects hierarchical authority [chunk-id].",
+  "citations": ["chunk-id"]
+}
+```
+
+#### Out-of-domain refusal
+
+```json
+{
+  "status": "refusal",
+  "category": "out_of_domain",
+  "answer": "I can only answer questions related to the indexed documents. This request appears to be outside that scope."
+}
+```
+
+#### Insufficient-context refusal
+
+```json
+{
+  "status": "refusal",
+  "category": "insufficient_context",
+  "answer": "The retrieved documents do not contain enough information to answer this question confidently."
+}
+```
+
+### Hallucination Resistance Strategy
+
+The system uses:
+
+- strict system prompt
+- context-only answering
+- structured JSON output
+- required citations
+- citation ID validation
+- sentence-level support checking
+- one strict revision attempt
+- safe refusal if unsupported
+- deterministic off-topic guard for obvious creative/trivia requests
+
+### Error Handling Strategy
+
+The LLM client handles:
+
+- timeouts
+- 429 rate limits
+- 5xx server errors
+- network errors
+- 401/403 authentication errors
+- 404 model-not-found errors
+- input token limit errors
+- output truncation errors
+- invalid JSON responses
+- empty reasoning-model content caused by small token budgets
+
+### Latency Logging
+
+Logs are stored in:
+
+```text
+reports/week3/latency_logs.jsonl
+```
+
+Each log includes:
+
+- retrieval_ms
+- prompt_build_ms
+- generation_ms
+- validation_ms
+- total_ms
+- prompt_tokens
+- completion_tokens
+- total_tokens
+- category
+- status
+- error_type
+
+### Results
+
+| Metric | Value |
+|---|---:|
+| Queries evaluated | 6 |
+| Answered successfully | 2 |
+| Out-of-domain refusals | 2 |
+| Insufficient-context refusals | 2 |
+| Unsupported refusals | 0 |
+| Errors | 0 |
+| Mean total latency | 692.18 ms |
+| Mean retrieval latency | 50.43 ms |
+| Mean generation latency | 640.73 ms |
+| Mean validation latency | 0.95 ms |
+| Mean total tokens | 1155.5 |
+
+### Known Limitations
+
+- Heuristic support checking can produce false positives or false negatives.
+- Token estimation is approximate unless replaced with a provider-specific tokenizer.
+- Answer quality depends on Week 2 retrieval quality.
+- If Week 2 indexed only a subset of the corpus, Week 3 can only answer questions covered by that subset.
+- Free model availability and model IDs may change frequently.
+
+### Submission Checklist
+
+- [x] LLM API integrated
+- [x] System prompt implemented
+- [x] Context injection implemented
+- [x] Robust error handling implemented
+- [x] Rate limit handling implemented
+- [x] Timeout handling implemented
+- [x] Token limit handling implemented
+- [x] Hallucination checks implemented
+- [x] Out-of-domain handling implemented
+- [x] Insufficient-context handling implemented
+- [x] End-to-end latency logging implemented
+- [x] README.md included
+- [x] Instructions to run code included
+
+<!-- WEEK3_SECTION_END -->

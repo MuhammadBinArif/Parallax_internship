@@ -1,0 +1,223 @@
+[
+  {
+    "query": "What is anarchism?",
+    "expected_category": "answered",
+    "actual_category": "answered",
+    "status": "ok",
+    "answer": "Anarchism is a political philosophy that rejects all forms of unjustified authority and seeks to abolish hierarchical institutions such as the state and capitalism, advocating for stateless societies and voluntary free associations. It is historically a left‑wing movement, often described as the libertarian wing of socialism, and emphasizes the possibility of a non‑coercive society based on voluntary cooperation.",
+    "citations": [
+      "fec396c131bd406fa377fb6d90f4bcc1",
+      "717652f9e1a74f05d0db4c7b8206ff1a"
+    ],
+    "latency": {
+      "retrieval_ms": 32.51,
+      "prompt_build_ms": 0.01,
+      "generation_ms": 1036.96,
+      "validation_ms": 4.05,
+      "total_ms": 1073.58
+    },
+    "tokens": {
+      "prompt_tokens": 1275,
+      "completion_tokens": 397,
+      "total_tokens": 1672
+    },
+    "debug": {
+      "chunks_retrieved": 5,
+      "chunks_filtered": 5,
+      "chunks_used": 5,
+      "chunk_ids_used": [
+        "fec396c131bd406fa377fb6d90f4bcc1",
+        "717652f9e1a74f05d0db4c7b8206ff1a",
+        "689dcd17c6d66d6b0884d002f78df1ca",
+        "d228b3a691f30df1de4ccf794b4fdb90",
+        "60940c9cce1b9fefd72033164a559b8f"
+      ],
+      "max_chunk_score": 0.6893447041511536,
+      "off_topic_guard": false,
+      "llm_attempts": 1,
+      "verification_issue_count": 0,
+      "verification_issues_preview": [],
+      "error_type": null
+    }
+  },
+  {
+    "query": "Who was Pierre-Joseph Proudhon?",
+    "expected_category": "answered",
+    "actual_category": "insufficient_context",
+    "status": "refusal",
+    "answer": "The retrieved documents do not contain enough information to answer this question confidently.",
+    "citations": [],
+    "latency": {
+      "retrieval_ms": 42.12,
+      "prompt_build_ms": 0.0,
+      "generation_ms": 1309.71,
+      "validation_ms": 0.02,
+      "total_ms": 1351.92
+    },
+    "tokens": {
+      "prompt_tokens": 1718,
+      "completion_tokens": 535,
+      "total_tokens": 2253
+    },
+    "debug": {
+      "chunks_retrieved": 5,
+      "chunks_filtered": 5,
+      "chunks_used": 5,
+      "chunk_ids_used": [
+        "47f56e7f74e03ed7d26d59812a489040",
+        "a57ea25bdc79367745920bf17a2fb432",
+        "21fa30869c2de5927df387332a85093e",
+        "0aa1091d446b41ff27511152a810d95d",
+        "044b41a2fa0a7361a951fdd43decbd86"
+      ],
+      "max_chunk_score": 0.5533643364906311,
+      "off_topic_guard": false,
+      "llm_attempts": 1,
+      "verification_issue_count": 0,
+      "verification_issues_preview": [],
+      "error_type": null
+    }
+  },
+  {
+    "query": "What is the etymology of the word anarchy?",
+    "expected_category": "answered",
+    "actual_category": "answered",
+    "status": "ok",
+    "answer": "Anarchy comes from the Ancient Greek word anarkhia, meaning “without a ruler,” formed from the prefix an‑ (“without”) and arkhos (“leader” or “ruler”).",
+    "citations": [
+      "9472ee9ec992c686f5069377a9e68ee3"
+    ],
+    "latency": {
+      "retrieval_ms": 104.56,
+      "prompt_build_ms": 0.01,
+      "generation_ms": 838.01,
+      "validation_ms": 1.64,
+      "total_ms": 944.29
+    },
+    "tokens": {
+      "prompt_tokens": 1413,
+      "completion_tokens": 283,
+      "total_tokens": 1696
+    },
+    "debug": {
+      "chunks_retrieved": 5,
+      "chunks_filtered": 5,
+      "chunks_used": 5,
+      "chunk_ids_used": [
+        "9472ee9ec992c686f5069377a9e68ee3",
+        "60940c9cce1b9fefd72033164a559b8f",
+        "689dcd17c6d66d6b0884d002f78df1ca",
+        "a07f33df3227cc795f78359662d73c5c",
+        "3adf65c60fe18ebe5d00895628d00954"
+      ],
+      "max_chunk_score": 0.5373998880386353,
+      "off_topic_guard": false,
+      "llm_attempts": 1,
+      "verification_issue_count": 0,
+      "verification_issues_preview": [],
+      "error_type": null
+    }
+  },
+  {
+    "query": "Write a poem about black holes.",
+    "expected_category": "out_of_domain",
+    "actual_category": "out_of_domain",
+    "status": "refusal",
+    "answer": "I can only answer questions related to the indexed documents. This request appears to be outside that scope.",
+    "citations": [],
+    "latency": {
+      "retrieval_ms": 24.2,
+      "prompt_build_ms": 0.0,
+      "generation_ms": 0.0,
+      "validation_ms": 0.0,
+      "total_ms": 24.23
+    },
+    "tokens": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "debug": {
+      "chunks_retrieved": 5,
+      "chunks_filtered": 0,
+      "chunks_used": 0,
+      "chunk_ids_used": [],
+      "max_chunk_score": null,
+      "off_topic_guard": true,
+      "llm_attempts": 0,
+      "verification_issue_count": 0,
+      "verification_issues_preview": [],
+      "error_type": null
+    }
+  },
+  {
+    "query": "Who won the FIFA World Cup in 2014?",
+    "expected_category": "out_of_domain",
+    "actual_category": "out_of_domain",
+    "status": "refusal",
+    "answer": "I can only answer questions related to the indexed documents. This request appears to be outside that scope.",
+    "citations": [],
+    "latency": {
+      "retrieval_ms": 45.79,
+      "prompt_build_ms": 0.0,
+      "generation_ms": 0.0,
+      "validation_ms": 0.0,
+      "total_ms": 45.84
+    },
+    "tokens": {
+      "prompt_tokens": 0,
+      "completion_tokens": 0,
+      "total_tokens": 0
+    },
+    "debug": {
+      "chunks_retrieved": 5,
+      "chunks_filtered": 0,
+      "chunks_used": 0,
+      "chunk_ids_used": [],
+      "max_chunk_score": null,
+      "off_topic_guard": true,
+      "llm_attempts": 0,
+      "verification_issue_count": 0,
+      "verification_issues_preview": [],
+      "error_type": null
+    }
+  },
+  {
+    "query": "What is the current leadership of the anarchist movement in 2026?",
+    "expected_category": "insufficient_context",
+    "actual_category": "insufficient_context",
+    "status": "refusal",
+    "answer": "The retrieved documents do not contain enough information to answer this question confidently.",
+    "citations": [],
+    "latency": {
+      "retrieval_ms": 53.38,
+      "prompt_build_ms": 0.01,
+      "generation_ms": 659.7,
+      "validation_ms": 0.02,
+      "total_ms": 713.21
+    },
+    "tokens": {
+      "prompt_tokens": 1228,
+      "completion_tokens": 84,
+      "total_tokens": 1312
+    },
+    "debug": {
+      "chunks_retrieved": 5,
+      "chunks_filtered": 5,
+      "chunks_used": 5,
+      "chunk_ids_used": [
+        "bc16b286479afc312b90f81b2ba3a933",
+        "a9c8c9f7746bd4a4fbf4351dfd1cb4f9",
+        "3adf65c60fe18ebe5d00895628d00954",
+        "717652f9e1a74f05d0db4c7b8206ff1a",
+        "689dcd17c6d66d6b0884d002f78df1ca"
+      ],
+      "max_chunk_score": 0.5444920659065247,
+      "off_topic_guard": false,
+      "llm_attempts": 1,
+      "verification_issue_count": 0,
+      "verification_issues_preview": [],
+      "error_type": null
+    }
+  }
+]

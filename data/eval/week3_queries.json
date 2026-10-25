@@ -1,0 +1,26 @@
+[
+  {
+    "query": "What is anarchism?",
+    "expected_category": "answered"
+  },
+  {
+    "query": "Who was Pierre-Joseph Proudhon?",
+    "expected_category": "answered"
+  },
+  {
+    "query": "What is the etymology of the word anarchy?",
+    "expected_category": "answered"
+  },
+  {
+    "query": "Write a poem about black holes.",
+    "expected_category": "out_of_domain"
+  },
+  {
+    "query": "Who won the FIFA World Cup in 2014?",
+    "expected_category": "out_of_domain"
+  },
+  {
+    "query": "What is the current leadership of the anarchist movement in 2026?",
+    "expected_category": "insufficient_context"
+  }
+]

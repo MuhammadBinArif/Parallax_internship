@@ -1,0 +1,30 @@
+{
+  "config": {
+    "input_dir": "data/processed",
+    "persist_dir": "chroma_db",
+    "collection": "week2_chunks",
+    "model": "all-MiniLM-L6-v2",
+    "chunk_size": 800,
+    "chunk_overlap": 150,
+    "embed_batch_size": 32,
+    "upsert_batch_size": 100,
+    "limit_docs": 1000,
+    "log": "reports/week2/ingest_log_week3_subset.json",
+    "reset": true
+  },
+  "files_found": 1,
+  "documents_processed": 1000,
+  "chunks_created": 12825,
+  "upserted": 12825,
+  "skipped": 0,
+  "skipped_details": [],
+  "file_errors": [],
+  "chunking_seconds": 1.53933,
+  "embedding_seconds": 745.793709,
+  "upsert_seconds": 79.987009,
+  "embedding_model": "all-MiniLM-L6-v2",
+  "embedding_dimension": 384,
+  "collection_count_after_ingest": 12825,
+  "total_seconds": 871.471067,
+  "status": "ok"
+}
