@@ -4,17 +4,17 @@
     "expected_category": "answered",
     "actual_category": "answered",
     "status": "ok",
-    "answer": "Anarchism is a political philosophy that rejects all forms of unjustified authority and seeks to abolish hierarchical institutions such as the state and capitalism, advocating for stateless societies and voluntary free associations. It is historically a left‑wing movement, often described as the libertarian wing of socialism, and emphasizes the possibility of a non‑coercive society based on voluntary cooperation.",
+    "answer": "Anarchism is a political philosophy that rejects all forms of unjustified authority and seeks to abolish institutions that maintain coercion and hierarchy, such as the state and capitalism, advocating for stateless societies and voluntary free associations. It is historically a left‑wing movement, often described as the libertarian wing of socialism (libertarian socialism).",
     "citations": [
       "fec396c131bd406fa377fb6d90f4bcc1",
       "717652f9e1a74f05d0db4c7b8206ff1a"
     ],
     "latency": {
-      "retrieval_ms": 32.51,
+      "retrieval_ms": 23.94,
       "prompt_build_ms": 0.01,
-      "generation_ms": 1036.96,
-      "validation_ms": 4.05,
-      "total_ms": 1073.58
+      "generation_ms": 940.01,
+      "validation_ms": 5.99,
+      "total_ms": 970.0
     },
     "tokens": {
       "prompt_tokens": 1275,
@@ -48,11 +48,11 @@
     "answer": "The retrieved documents do not contain enough information to answer this question confidently.",
     "citations": [],
     "latency": {
-      "retrieval_ms": 42.12,
-      "prompt_build_ms": 0.0,
-      "generation_ms": 1309.71,
+      "retrieval_ms": 47.5,
+      "prompt_build_ms": 0.01,
+      "generation_ms": 1093.4,
       "validation_ms": 0.02,
-      "total_ms": 1351.92
+      "total_ms": 1141.01
     },
     "tokens": {
       "prompt_tokens": 1718,
@@ -88,11 +88,11 @@
       "9472ee9ec992c686f5069377a9e68ee3"
     ],
     "latency": {
-      "retrieval_ms": 104.56,
+      "retrieval_ms": 49.49,
       "prompt_build_ms": 0.01,
-      "generation_ms": 838.01,
-      "validation_ms": 1.64,
-      "total_ms": 944.29
+      "generation_ms": 791.95,
+      "validation_ms": 1.62,
+      "total_ms": 843.13
     },
     "tokens": {
       "prompt_tokens": 1413,
@@ -126,11 +126,11 @@
     "answer": "I can only answer questions related to the indexed documents. This request appears to be outside that scope.",
     "citations": [],
     "latency": {
-      "retrieval_ms": 24.2,
+      "retrieval_ms": 48.94,
       "prompt_build_ms": 0.0,
       "generation_ms": 0.0,
       "validation_ms": 0.0,
-      "total_ms": 24.23
+      "total_ms": 48.97
     },
     "tokens": {
       "prompt_tokens": 0,
@@ -139,10 +139,14 @@
     },
     "debug": {
       "chunks_retrieved": 5,
-      "chunks_filtered": 0,
-      "chunks_used": 0,
-      "chunk_ids_used": [],
-      "max_chunk_score": null,
+      "chunks_filtered": 3,
+      "chunks_used": 3,
+      "chunk_ids_used": [
+        "e9346554d734bf06970e222675027f51",
+        "52eaa10422be9b58a365bbe35cb23fdf",
+        "d212228f9c089983bbbaa9e9387f2667"
+      ],
+      "max_chunk_score": 0.37776029109954834,
       "off_topic_guard": true,
       "llm_attempts": 0,
       "verification_issue_count": 0,
@@ -158,11 +162,11 @@
     "answer": "I can only answer questions related to the indexed documents. This request appears to be outside that scope.",
     "citations": [],
     "latency": {
-      "retrieval_ms": 45.79,
+      "retrieval_ms": 48.28,
       "prompt_build_ms": 0.0,
       "generation_ms": 0.0,
       "validation_ms": 0.0,
-      "total_ms": 45.84
+      "total_ms": 48.32
     },
     "tokens": {
       "prompt_tokens": 0,
@@ -171,10 +175,13 @@
     },
     "debug": {
       "chunks_retrieved": 5,
-      "chunks_filtered": 0,
-      "chunks_used": 0,
-      "chunk_ids_used": [],
-      "max_chunk_score": null,
+      "chunks_filtered": 2,
+      "chunks_used": 2,
+      "chunk_ids_used": [
+        "934afa869496d23f35745f39ba5eb58f",
+        "075f7e577e00df56ce67daac1a2aaf7a"
+      ],
+      "max_chunk_score": 0.40057486295700073,
       "off_topic_guard": true,
       "llm_attempts": 0,
       "verification_issue_count": 0,
@@ -190,11 +197,11 @@
     "answer": "The retrieved documents do not contain enough information to answer this question confidently.",
     "citations": [],
     "latency": {
-      "retrieval_ms": 53.38,
+      "retrieval_ms": 69.51,
       "prompt_build_ms": 0.01,
-      "generation_ms": 659.7,
+      "generation_ms": 719.84,
       "validation_ms": 0.02,
-      "total_ms": 713.21
+      "total_ms": 789.51
     },
     "tokens": {
       "prompt_tokens": 1228,
