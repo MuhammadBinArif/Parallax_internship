@@ -1,0 +1,38 @@
+{
+  "documents_processed": 500,
+  "n_topics": 10,
+  "use_bertopic": false,
+  "sentiment_method": "vader",
+  "total_seconds": 131.42,
+  "avg_seconds_per_doc": 0.2628,
+  "topic_distribution": {
+    "0": 25,
+    "1": 53,
+    "2": 70,
+    "3": 42,
+    "4": 57,
+    "5": 14,
+    "6": 100,
+    "7": 27,
+    "8": 19,
+    "9": 93
+  },
+  "sentiment_distribution": {
+    "positive": 328,
+    "negative": 158,
+    "neutral": 14
+  },
+  "edge_cases": {},
+  "topic_labels": [
+    "Topic 0: atlas, ajax, company",
+    "Topic 1: greek, used, languages",
+    "Topic 2: city, century, north",
+    "Topic 3: used, time, use",
+    "Topic 4: species, number, group",
+    "Topic 5: shah, atlantic, father",
+    "Topic 6: work, time, later",
+    "Topic 7: film, adrian, american",
+    "Topic 8: court, party, antigua",
+    "Topic 9: war, american, united"
+  ]
+}

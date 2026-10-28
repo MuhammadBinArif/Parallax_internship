@@ -8,10 +8,9 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
-sys.path.insert(0, str(ROOT))
+    sys.path.insert(0, str(ROOT))
 
 from src.week4.nlp_pipeline import NLPPipeline
-from src.week4.evaluation import evaluate_sentiment
 
 
 def load_corpus(path: Path, limit: int = 0) -> list[dict]:
