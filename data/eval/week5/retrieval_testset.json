@@ -1,0 +1,192 @@
+[
+  {
+    "query": "What is anarchism?",
+    "required_terms": [
+      "anarchism"
+    ],
+    "retrieved_pool_size": 50,
+    "relevant_ids": [
+      "fec396c131bd406fa377fb6d90f4bcc1",
+      "717652f9e1a74f05d0db4c7b8206ff1a",
+      "689dcd17c6d66d6b0884d002f78df1ca",
+      "d228b3a691f30df1de4ccf794b4fdb90",
+      "3adf65c60fe18ebe5d00895628d00954",
+      "42c1c6301509b1a9749b8f288dcb436a",
+      "64fec1c5792182052d8f3fc88c8d7a6c",
+      "526eace59659a90ea40669ba773ddc38",
+      "a07f33df3227cc795f78359662d73c5c",
+      "bc16b286479afc312b90f81b2ba3a933",
+      "9472ee9ec992c686f5069377a9e68ee3",
+      "34ab5def5870132581e1852483f44ce0",
+      "b24201a2cae34e0344cc5864a4157dd8",
+      "296f63a617bf953033a839e3bc33077d",
+      "96d1fa2cb61878741603010918c2643a",
+      "2c73b350085cf2344d9e380223f6c978",
+      "d7f513cabe24cf66b73ba48bdd15953c"
+    ],
+    "relevant_count": 17
+  },
+  {
+    "query": "Who was Pierre-Joseph Proudhon?",
+    "required_terms": [
+      "proudhon"
+    ],
+    "retrieved_pool_size": 50,
+    "relevant_ids": [],
+    "relevant_count": 0
+  },
+  {
+    "query": "What is the etymology of the word anarchy?",
+    "required_terms": [
+      "anarchy",
+      "greek",
+      "anarkhia"
+    ],
+    "retrieved_pool_size": 50,
+    "relevant_ids": [
+      "9472ee9ec992c686f5069377a9e68ee3",
+      "689dcd17c6d66d6b0884d002f78df1ca",
+      "42c1c6301509b1a9749b8f288dcb436a",
+      "b75938bf0b7be996ac6d525be1512a07",
+      "06738f6346951e59d99b5ac50544e773",
+      "9ca3be8227f91a3bfc6bb512ddc7799a",
+      "8c75fb6d011c88e38b15b2982bc421a9",
+      "0f4f67e9683f4a0181430fd9ac6784ed",
+      "23f144051a4319fca6c15dcadc3659be",
+      "2ea07891f9742096720220917e999388",
+      "fef65bb141b92085d8f6d81550ccfe11",
+      "bee84a78f31dbd2b7e5717845a241410"
+    ],
+    "relevant_count": 12
+  },
+  {
+    "query": "How did modern anarchism emerge from the Enlightenment?",
+    "required_terms": [
+      "enlightenment"
+    ],
+    "retrieved_pool_size": 50,
+    "relevant_ids": [
+      "3adf65c60fe18ebe5d00895628d00954",
+      "64fec1c5792182052d8f3fc88c8d7a6c",
+      "52c90e05b7d27eb912a67c49f86afb35"
+    ],
+    "relevant_count": 3
+  },
+  {
+    "query": "What are revolutionary and evolutionary anarchist strategies?",
+    "required_terms": [
+      "revolutionary",
+      "evolutionary"
+    ],
+    "retrieved_pool_size": 50,
+    "relevant_ids": [
+      "a9c8c9f7746bd4a4fbf4351dfd1cb4f9",
+      "4da2efa9387e5935c71c19b570b96878",
+      "296f63a617bf953033a839e3bc33077d",
+      "5bcd928ba439d0d574517e7ba9a4f9f6",
+      "92bae56995581a0db9a447bb61a4b6a8"
+    ],
+    "relevant_count": 5
+  },
+  {
+    "query": "What is libertarian socialism?",
+    "required_terms": [
+      "libertarian",
+      "socialism"
+    ],
+    "retrieved_pool_size": 50,
+    "relevant_ids": [
+      "34ab5def5870132581e1852483f44ce0",
+      "717652f9e1a74f05d0db4c7b8206ff1a",
+      "4e00aae39948f249a78173a90ba3d9b4",
+      "74f77e4fb4db506da5472defbb5d8514",
+      "fec396c131bd406fa377fb6d90f4bcc1",
+      "55b4c6a2ddb949472d2d9e174e6fb734",
+      "d7f513cabe24cf66b73ba48bdd15953c",
+      "e3e89df2d8e52d2c39251f5e598a36c4",
+      "3373190e1d18dff08bb89deda8c694e1",
+      "ba6c785f5b7f78d52c25bc1778a5e82a",
+      "a251c701cfe0752ef22af3205ca7af77",
+      "8c58c370e4ed41f332ef97eada059de3",
+      "0439bffc9f9d4b8538265ea6567f6b67",
+      "64fec1c5792182052d8f3fc88c8d7a6c"
+    ],
+    "relevant_count": 14
+  },
+  {
+    "query": "How did the Spanish Civil War affect the anarchist movement?",
+    "required_terms": [
+      "spanish",
+      "civil",
+      "war"
+    ],
+    "retrieved_pool_size": 50,
+    "relevant_ids": [
+      "bc16b286479afc312b90f81b2ba3a933",
+      "d31cbca4c3338e6c51b22a5d8911074d",
+      "3adf65c60fe18ebe5d00895628d00954",
+      "a650b210f75ccdf14ce54860962fd128",
+      "a07f33df3227cc795f78359662d73c5c",
+      "a9c8c9f7746bd4a4fbf4351dfd1cb4f9",
+      "ad50b458da9a25ebd94e7a559180cede",
+      "0d36344e2b40567a35bf37b7fa93390e",
+      "02de4082f5fade95bae10e26191e2c22",
+      "217b7b485b19b01ca5ac8917181f7fdb",
+      "296f63a617bf953033a839e3bc33077d",
+      "604967478b4e22c36a1edacc3dadf627",
+      "f013e971664c1c744a4ab7e77e533b8c",
+      "ec8a979aac825b4ff27c8ac42d36fb3b",
+      "d3e8185cc5bf992e1bbdbb3b0206506f",
+      "8631225b706e1ea2a920efeaabc18f02",
+      "69f8bb2d1d39c5da7c20cdaa302c34b0",
+      "f817d8e357b134d8fe90f1bc656168e0",
+      "34cfbf809586eca350a5c479cf726f78",
+      "dccc0ad7a02d233fcd347ebd74b80a6a",
+      "8c09ef596f1256ac41e87c0c0e9fa501",
+      "f6fe5c0048e9023512d4871efb10f30c",
+      "1f952ad6754c96ff4b2ff07c1393c27e",
+      "f0a02106154185e3420013a3442a134a",
+      "91164819eb34b036a992bfc66d0e1443",
+      "66addaaa6aae35cb0fd27b21f6a8e711",
+      "14f5adaef0b2c4c939e25027d88b5186",
+      "5df08d095dd3af2c4f666836192c54a2",
+      "226738388622e97302e1ff0fce2ca52f"
+    ],
+    "relevant_count": 29
+  },
+  {
+    "query": "What is a stateless society?",
+    "required_terms": [
+      "stateless"
+    ],
+    "retrieved_pool_size": 50,
+    "relevant_ids": [
+      "fec396c131bd406fa377fb6d90f4bcc1",
+      "55b4c6a2ddb949472d2d9e174e6fb734"
+    ],
+    "relevant_count": 2
+  },
+  {
+    "query": "Who were William Godwin and Max Stirner?",
+    "required_terms": [
+      "godwin",
+      "stirner"
+    ],
+    "retrieved_pool_size": 50,
+    "relevant_ids": [
+      "34893f3430f9c90d618460a65892c757"
+    ],
+    "relevant_count": 1
+  },
+  {
+    "query": "What is collectivist anarchism?",
+    "required_terms": [
+      "collectivist"
+    ],
+    "retrieved_pool_size": 50,
+    "relevant_ids": [
+      "296f63a617bf953033a839e3bc33077d"
+    ],
+    "relevant_count": 1
+  }
+]
