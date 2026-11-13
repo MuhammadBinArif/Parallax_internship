@@ -1,0 +1,90 @@
+{
+  "generated_at": "2026-11-04T21:42:33.644298Z",
+  "weeks": {
+    "week1": {
+      "raw_documents": 50000,
+      "clean_documents": 49324,
+      "unique_ids": true,
+      "null_text_count": 0,
+      "language_filter": true,
+      "env_passed": true
+    },
+    "week2": {
+      "documents_processed": 1000,
+      "chunks_created": 12825,
+      "upserted": 12825,
+      "skipped": 0,
+      "embedding_model": "all-MiniLM-L6-v2",
+      "embedding_dimension": 384,
+      "collection_count": 12825,
+      "mean_retrieval_ms": 21.14644956047414,
+      "mean_embed_ms": 15.720436538977083,
+      "mean_search_ms": 5.4027729204972275,
+      "p50_total_ms": 20.46866850287188,
+      "p95_total_ms": 25.872278948372692,
+      "queries_benchmarked": 10
+    },
+    "week3": {
+      "queries_evaluated": 6,
+      "categories": {
+        "answered": 21,
+        "insufficient_context": 25,
+        "out_of_domain": 19
+      },
+      "statuses": {
+        "ok": 21,
+        "refusal": 44
+      },
+      "mean_total_ms": 6298.29,
+      "mean_generation_ms": 6251.58,
+      "mean_retrieval_ms": 44.97,
+      "mean_total_tokens": 1126.2,
+      "llm_provider": "groq",
+      "llm_model": "openai/gpt-oss-20b"
+    },
+    "week4": {
+      "documents_analyzed": 500,
+      "n_topics": 10,
+      "sentiment_distribution": {
+        "positive": 328,
+        "negative": 158,
+        "neutral": 14
+      },
+      "edge_cases": {},
+      "sentiment_accuracy": 0.7,
+      "sentiment_macro_f1": 0.6534,
+      "enriched_chunks": 1000,
+      "enriched_collection_count": 1000
+    },
+    "week5": {
+      "retrieval": {
+        "num_queries": 9,
+        "precision@1": 0.5556,
+        "precision@5": 0.4222,
+        "precision@10": 0.3111,
+        "recall@5": 0.4062,
+        "recall@10": 0.5658,
+        "map": 0.2415,
+        "mrr": 0.6714,
+        "ndcg@10": 0.4999,
+        "mean_latency_ms": 25.93
+      },
+      "e2e": {
+        "num_queries": 6,
+        "category_accuracy": 0.6667,
+        "citation_presence_rate": 1.0,
+        "mean_pipeline_ms": 21021.14,
+        "p95_pipeline_ms": 61775.55,
+        "mean_total_tokens": 929.3
+      },
+      "api_requests_logged": 0
+    }
+  },
+  "aggregate": {
+    "total_pipeline_weeks": 5,
+    "total_documents": 49324,
+    "total_chunks_indexed": 12825,
+    "end_to_end_mean_latency_ms": 21021.14,
+    "retrieval_mean_latency_ms": 21.14644956047414
+  }
+}
