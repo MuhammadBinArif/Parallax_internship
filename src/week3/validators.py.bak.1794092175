@@ -1,0 +1,361 @@
+"""
+Validation utilities for RAG answer grounding.
+
+This module implements the citation and support-scoring checks that the
+Week 3 RAG service uses to determine whether an LLM answer is grounded in
+the retrieved context. It parses the LLM's structured JSON output,
+extracts inline citations of the form ``[chunk-id]``, confirms that every
+cited chunk was actually retrieved, and scores each factual sentence
+against the evidence it cites.
+
+The goal is not to prove an answer is correct — it is to prove that every
+claim in the answer is traceable to the retrieved context. Anything that
+cannot be traced is flagged as unsupported so the caller can retry with a
+stricter prompt or refuse to answer.
+"""
+from __future__ import annotations
+
+import json
+import re
+from difflib import SequenceMatcher
+from typing import Any
+
+
+CITATION_RE = re.compile(r"\[([^\]]+)\]")
+SENTENCE_RE = re.compile(r"(?<=[.!?])\s+")
+WORD_RE = re.compile(r"[a-z0-9]+")
+
+
+def tokenize(text: str) -> list[str]:
+    """
+    Split ``text`` into lowercase alphanumeric tokens.
+
+    Used by support scoring to compare an answer sentence against the
+    evidence chunk. Punctuation and case are dropped so that ``"Anarchism."``
+    and ``"anarchism"`` compare equal.
+
+    Args:
+        text: Any input string. ``None`` should be coerced to ``""``
+            by the caller.
+
+    Returns:
+        A list of lowercase tokens. Empty list if the input contains
+        no alphanumeric content.
+    """
+    return WORD_RE.findall(text.lower())
+
+
+def parse_json_object(text: str) -> dict[str, Any]:
+    """
+    Parse a JSON object from an LLM response, tolerating common noise.
+
+    LLMs frequently wrap JSON in markdown fences or add preamble/postamble
+    text around it. This function:
+
+    1. Strips markdown code fences if present.
+    2. Attempts a direct ``json.loads``.
+    3. Falls back to extracting the substring between the first ``{``
+       and the last ``}``.
+
+    Args:
+        text: Raw content from the LLM response.
+
+    Returns:
+        The parsed JSON object as a dictionary.
+
+    Raises:
+        ValueError: If no JSON object can be extracted, or if the JSON
+            root is not a dictionary.
+    """
+    cleaned = text.strip()
+
+    if cleaned.startswith("```"):
+        lines = cleaned.splitlines()
+
+        if lines and lines[0].startswith("```"):
+            lines = lines[1:]
+
+        if lines and lines[-1].strip() == "```":
+            lines = lines[:-1]
+
+        cleaned = "\n".join(lines).strip()
+
+    try:
+        obj = json.loads(cleaned)
+    except json.JSONDecodeError:
+        start = cleaned.find("{")
+        end = cleaned.rfind("}")
+
+        if start == -1 or end == -1 or end <= start:
+            raise ValueError("No JSON object found in model response.")
+
+        obj = json.loads(cleaned[start:end + 1])
+
+    if not isinstance(obj, dict):
+        raise ValueError("Model response JSON root is not an object.")
+
+    return obj
+
+
+def extract_citations(text: str) -> list[str]:
+    """
+    Extract inline citation IDs from an answer string.
+
+    Citations are written as ``[chunk-id]`` and may contain multiple
+    comma- or semicolon-separated IDs, e.g. ``[a, b; c]`` yields
+    ``["a", "b", "c"]``.
+
+    Args:
+        text: Answer text that may contain zero or more inline citations.
+
+    Returns:
+        A flat list of citation IDs in the order they appear. Duplicates
+        are preserved — call :func:`unique_preserve_order` if you need a
+        deduplicated list.
+    """
+    citations = []
+
+    for match in CITATION_RE.finditer(text or ""):
+        raw = match.group(1)
+
+        for part in re.split(r"[,;]", raw):
+            part = part.strip()
+            if part:
+                citations.append(part)
+
+    return citations
+
+
+def remove_citations(text: str) -> str:
+    """
+    Strip inline citations from an answer string.
+
+    Replaces every ``[chunk-id]`` block with a single space so that
+    sentence-level scoring is not affected by the citation tokens.
+
+    Args:
+        text: Answer text, possibly containing citations.
+
+    Returns:
+        The answer text with citation blocks replaced by a single space.
+    """
+    return CITATION_RE.sub(" ", text or "")
+
+
+def unique_preserve_order(items: list[str]) -> list[str]:
+    """
+    Deduplicate a list of strings while preserving first-seen order.
+
+    Args:
+        items: A list of strings, possibly containing duplicates and
+            whitespace-only entries.
+
+    Returns:
+        A new list with the same strings in first-seen order, with
+        duplicate entries and empty (or whitespace-only) entries removed.
+    """
+    seen = set()
+    result = []
+
+    for item in items:
+        item = str(item).strip()
+        if item and item not in seen:
+            seen.add(item)
+            result.append(item)
+
+    return result
+
+
+def normalize_category(value: Any) -> str:
+    """
+    Normalize a model-supplied category string to a canonical label.
+
+    The model occasionally returns near-synonyms or different casing
+    for the three canonical categories. This function maps all the
+    common variants to one of:
+
+    - ``"answered"``
+    - ``"insufficient_context"``
+    - ``"out_of_domain"``
+    - ``"invalid"`` (unrecognized input)
+
+    Args:
+        value: The raw category value from the model's JSON response.
+
+    Returns:
+        One of the four canonical strings listed above.
+    """
+    raw = str(value or "").strip().lower()
+    raw = raw.replace("-", "_").replace(" ", "_")
+
+    if raw in {"answered", "answer", "ok", "success", "supported"}:
+        return "answered"
+
+    if raw in {
+        "insufficient_context",
+        "insufficient",
+        "not_enough_context",
+        "unknown",
+        "missing_context",
+    }:
+        return "insufficient_context"
+
+    if raw in {
+        "out_of_domain",
+        "off_topic",
+        "not_in_domain",
+        "unrelated",
+        "irrelevant",
+    }:
+        return "out_of_domain"
+
+    return "invalid"
+
+
+def sentence_support(sentence: str, evidence: str) -> float:
+    """
+    Score how well an evidence chunk supports a single answer sentence.
+
+    The score combines two signals:
+
+    1. **Token overlap** — the fraction of the sentence's unique tokens
+       that also appear in the evidence.
+    2. **Fuzzy sequence similarity** — the ``SequenceMatcher`` ratio
+       between the sentence and the evidence, discounted to 90% because
+       it can overstate support on very short sentences.
+
+    The final score is the maximum of the two, so a sentence is
+    considered supported if either the vocabulary match is strong or
+    the sequence similarity is high.
+
+    Args:
+        sentence: A single sentence from the answer, with citations
+            already removed.
+        evidence: The text of a single retrieved chunk.
+
+    Returns:
+        A score in ``[0.0, 1.0]``. Returns ``1.0`` if the sentence is
+        empty (nothing to check), and ``0.0`` if the evidence is empty
+        (nothing to check against).
+    """
+    sentence_tokens = tokenize(sentence)
+    evidence_tokens = tokenize(evidence)
+
+    if not sentence_tokens:
+        return 1.0
+
+    if not evidence_tokens:
+        return 0.0
+
+    sentence_set = set(sentence_tokens)
+    evidence_set = set(evidence_tokens)
+
+    overlap = len(sentence_set & evidence_set) / max(1, len(sentence_set))
+
+    ratio = SequenceMatcher(
+        None,
+        " ".join(sentence_tokens),
+        " ".join(evidence_tokens),
+    ).ratio()
+
+    return max(overlap, ratio * 0.9)
+
+
+def validate_groundedness(
+    answer: str,
+    chunks: list[Any],
+    threshold: float,
+    declared_citations: list[str] | None = None,
+) -> tuple[bool, list[str]]:
+    """
+    Verify that every substantive sentence in ``answer`` is supported
+    by the retrieved chunks it cites.
+
+    Performs five checks in order:
+
+    1. Non-empty answer.
+    2. At least one citation (inline, declared, or both).
+    3. Every cited chunk ID was actually retrieved.
+    4. At least one substantive sentence (5+ tokens after citation
+       removal) exists to verify.
+    5. Every substantive sentence is supported by at least one cited
+       chunk above ``threshold``.
+
+    The first four checks short-circuit — if any fails, no sentence
+    scoring is performed and the function returns early.
+
+    Args:
+        answer: The LLM's answer text, possibly including inline
+            citations.
+        chunks: The retrieved chunks. Each must expose ``.id`` and
+            ``.text`` attributes (Week 2 ``Chunk`` dataclass).
+        threshold: Minimum support score for a sentence to be considered
+            grounded. Typical values are 0.25–0.40.
+        declared_citations: Optional list of chunk IDs the model declared
+            it used, separate from inline citations. Both are combined.
+
+    Returns:
+        A tuple ``(is_grounded, issues)``:
+
+        - ``is_grounded`` is ``True`` if all checks pass.
+        - ``issues`` is a list of human-readable problem descriptions.
+          Empty on success.
+    """
+    if not answer or not answer.strip():
+        return False, ["Empty answer."]
+
+    inline_citations = extract_citations(answer)
+    declared = [
+        str(c).strip()
+        for c in (declared_citations or [])
+        if str(c).strip()
+    ]
+
+    citations = unique_preserve_order(declared + inline_citations)
+
+    if not citations:
+        return False, ["No citations found."]
+
+    chunks_by_id = {chunk.id: chunk.text for chunk in chunks}
+
+    unknown = [cid for cid in citations if cid not in chunks_by_id]
+    issues = []
+
+    if unknown:
+        issues.append("Unknown citations: " + ", ".join(unknown))
+
+    valid_citations = [cid for cid in citations if cid in chunks_by_id]
+
+    if not valid_citations:
+        return False, issues or ["No valid citations."]
+
+    cleaned_answer = remove_citations(answer)
+    sentences = [
+        sentence.strip()
+        for sentence in SENTENCE_RE.split(cleaned_answer)
+        if sentence.strip()
+    ]
+
+    substantive_sentences = [
+        sentence
+        for sentence in sentences
+        if len(tokenize(sentence)) >= 5
+    ]
+
+    if not substantive_sentences:
+        return False, ["No substantive sentences to verify."]
+
+    for sentence in substantive_sentences:
+        best_score = 0.0
+
+        for cid in valid_citations:
+            score = sentence_support(sentence, chunks_by_id[cid])
+            if score > best_score:
+                best_score = score
+
+        if best_score < threshold:
+            issues.append(
+                f"Low support ({best_score:.2f}): {sentence[:120]}"
+            )
+
+    return len(issues) == 0, issues
